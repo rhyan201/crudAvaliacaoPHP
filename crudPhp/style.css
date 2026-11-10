@@ -1,0 +1,211 @@
+/* ===== Fonte do site ===== */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap');
+
+/* ===== Cores do site ===== */
+:root {
+    --bege-fundo: #f5efe3;      /* fundo da página */
+    --bege-card: #fbf8f2;       /* fundo dos quadros */
+    --bege-borda: #e4d9c4;      /* bordas e divisórias */
+    --verde-claro: #b7dbb0;     /* destaque suave */
+    --verde: #8cc485;           /* botão */
+    --verde-hover: #78b371;     /* botão com mouse em cima */
+    --verde-escuro: #3f6b3a;    /* títulos */
+    --texto: #3d3a33;           /* texto principal */
+    --texto-suave: #8a8170;     /* textos secundários */
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Nunito", "Segoe UI", Arial, sans-serif;
+    background: var(--bege-fundo);
+    color: var(--texto);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 16px;
+}
+
+/* ===== Layout: formulário à esquerda, lista à direita ===== */
+.formAvaliacoes {
+    display: grid;
+    grid-template-columns: 360px 580px;
+    grid-template-rows: auto auto 1fr;
+    grid-template-areas:
+        "titulo lista"
+        "form   lista"
+        "botao  lista";
+    column-gap: 100px;
+    align-items: start;
+}
+
+/* ===== Título ===== */
+.formAvaliacoes h1 {
+    grid-area: titulo;
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--verde-escuro);
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 3px solid var(--verde-claro);
+}
+
+/* ===== Formulário ===== */
+#form-avaliacao {
+    grid-area: form;
+    background: var(--bege-card);
+    border: 1px solid var(--bege-borda);
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+#form-avaliacao br {
+    display: none; /* o espaçamento é feito pelo CSS */
+}
+
+#form-avaliacao label {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+#form-avaliacao input {
+    display: block;
+    width: 100%;
+    padding: 10px 12px;
+    margin-bottom: 18px;
+    font-size: 0.95rem;
+    font-family: inherit;
+    color: var(--texto);
+    background: #fff;
+    border: 1px solid var(--bege-borda);
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+#form-avaliacao input:last-of-type {
+    margin-bottom: 0;
+}
+
+#form-avaliacao input:focus {
+    border-color: var(--verde);
+    box-shadow: 0 0 0 3px var(--verde-claro);
+}
+
+/* ===== Botão enviar ===== */
+#btn-enviar {
+    grid-area: botao;
+    width: 100%;
+    margin-top: 16px;
+    padding: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: inherit;
+    color: #fff;
+    background: var(--verde);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+#btn-enviar:hover {
+    background: var(--verde-hover);
+}
+
+/* ===== Lista de registros (quadro fixo com rolagem) ===== */
+#lista_avaliacoes {
+    grid-area: lista;
+    width: 580px;
+    height: 580px;
+    overflow-y: auto;
+    list-style: none;
+    background: var(--bege-card);
+    border: 1px solid var(--bege-borda);
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+/* mensagem quando a lista estiver vazia */
+#lista_avaliacoes:empty::before {
+    content: "Nenhuma avaliação cadastrada.";
+    display: block;
+    text-align: center;
+    margin-top: 40px;
+    color: var(--texto-suave);
+}
+
+/* cada avaliação da lista */
+#lista_avaliacoes li {
+    background: #fff;
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin-bottom: 10px;
+    line-height: 1.5;
+}
+
+#lista_avaliacoes li:last-child {
+    margin-bottom: 0;
+}
+
+/* botões dentro de cada item (alterar / excluir) */
+#lista_avaliacoes li button {
+    margin-top: 8px;
+    margin-right: 6px;
+    padding: 5px 12px;
+    font-size: 0.85rem;
+    font-family: inherit;
+    font-weight: 600;
+    color: #fff;
+    background: var(--verde);
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+#lista_avaliacoes li button:hover {
+    background: var(--verde-hover);
+}
+
+/* barra de rolagem discreta */
+#lista_avaliacoes::-webkit-scrollbar {
+    width: 8px;
+}
+
+#lista_avaliacoes::-webkit-scrollbar-thumb {
+    background: var(--verde-claro);
+    border-radius: 4px;
+}
+
+#lista_avaliacoes::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* ===== Telas pequenas: um embaixo do outro ===== */
+@media (max-width: 1100px) {
+    .formAvaliacoes {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "titulo"
+            "form"
+            "botao"
+            "lista";
+        width: 100%;
+        max-width: 580px;
+    }
+
+    #lista_avaliacoes {
+        width: 100%;
+        margin-top: 28px;
+    }
+}

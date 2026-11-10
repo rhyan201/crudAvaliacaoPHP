@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Crud PHP</title>
+</head>
+<body>
+
+    <div class="formAvaliacoes">
+        <h1>Cadastro de Avaliações</h1>
+        
+        <form id="form-avaliacao">
+
+            <label for="nome">Nome do usuário</label>
+            <input type="text" id="nome" name="nome"> <br>
+
+            <label for="descricao">Comentário</label>
+            <input type="text" id="descricao" name="descricao"> <br>
+
+            <label for="nota">Nota</label>
+            <input type="number" id="nota" name="nota" min="0" max="10"> <br>
+
+        </form>
+
+        <button id="btn-enviar" type="button">Enviar</button>
+
+        <ul id="lista_avaliacoes"></ul>
+    </div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
